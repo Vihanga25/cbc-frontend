@@ -14,6 +14,7 @@ function App() {
         <Routes>
           <Route path = "/" element ={<HomePage/>}/>
           <Route path = "/login" element ={<LoginPage/>}/>
+          <Route path = "*" element ={<h1>404 Error</h1>}/>
 
         </Routes>
 

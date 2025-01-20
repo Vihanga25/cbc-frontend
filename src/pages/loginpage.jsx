@@ -6,7 +6,7 @@ return (
         <h1>Login Page</h1>
         <input type ="text" placeholder="Enter your username"/>
         <input type = "Password" placeholder ="Enter your Password"/>
-        <button>Login</button>
+        <button className="bg-blue-700" >Login</button>
     </div>
 )
 
