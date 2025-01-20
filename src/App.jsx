@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import LoginPage from './pages/loginpage'
 import HomePage from './pages/homePage'
+import { BrowserRouter } from 'react-router-dom'
 
 
 
@@ -9,8 +10,12 @@ function App() {
 
   return (
     <div>
-      <LoginPage/>
-      <HomePage/>
+      <BrowserRouter>
+        <LoginPage/>
+        <HomePage/>
+      
+      </BrowserRouter>
+      
      
     
 
