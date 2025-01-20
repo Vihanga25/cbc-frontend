@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import LoginPage from './pages/loginpage'
 import HomePage from './pages/homePage'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 
 
@@ -11,8 +11,17 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <LoginPage/>
-        <HomePage/>
+        <Routes>
+          <Route path = "/" element ={<HomePage/>}/>
+          <Route path = "/login" elemnt ={<LoginPage/>}/>
+
+
+
+
+        </Routes>
+
+        
+        
       
       </BrowserRouter>
       
