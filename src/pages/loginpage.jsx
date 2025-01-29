@@ -1,8 +1,14 @@
 import { useState } from "react";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleLogin = () => {
     console.log("Email:", email);
@@ -16,6 +22,7 @@ export default function LoginPage() {
 
         <h1 className="text-xl font-semibold text-gray-800">Login Page</h1>
 
+        
         <div className="w-full flex flex-col gap-2">
           <label className="text-sm font-medium text-gray-700">Email</label>
           <input
@@ -23,19 +30,29 @@ export default function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Enter your email"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
-        <div className="w-full flex flex-col gap-2">
+        
+        <div className="w-full flex flex-col gap-2 relative">
           <label className="text-sm font-medium text-gray-700">Password</label>
-          <input
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            type="password"
-            placeholder="Enter your password"
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
+          <div className="relative w-full">
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+            >
+              {showPassword ? <IoEyeOutline size={20} /> : <IoEyeOffOutline size={20} />}
+            </button>
+          </div>
         </div>
 
         <button
