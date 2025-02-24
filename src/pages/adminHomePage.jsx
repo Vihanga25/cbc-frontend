@@ -3,6 +3,7 @@ import { BsGraphUp } from "react-icons/bs";
 import { MdProductionQuantityLimits } from "react-icons/md";
 import { AiOutlineProduct } from "react-icons/ai";
 import { IoPeopleSharp } from "react-icons/io5";
+import AdminProductPage from "./admin/adminProductPage";
 
 export default function AdminHomePage(){
 
@@ -27,7 +28,7 @@ return(
     <div className="bg-red-500 w-[80%] h-screen">
         <Routes path="/*">
         <Route path="/dashboard" element ={<h1>Dashboard</h1>}/>
-        <Route path="/products" element ={<h1>Products</h1>}/>
+        <Route path="/products" element ={<AdminProductPage/>}/>
         <Route path="/orders" element ={<h1>Orders</h1>}/>
         <Route path="/customers" element ={<h1>Customers</h1>}/>
         <Route path="/*" element ={<h1>404 error</h1>}/>
