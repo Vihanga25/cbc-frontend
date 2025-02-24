@@ -4,6 +4,7 @@ import { MdProductionQuantityLimits } from "react-icons/md";
 import { AiOutlineProduct } from "react-icons/ai";
 import { IoPeopleSharp } from "react-icons/io5";
 import AdminProductPage from "./admin/adminProductPage";
+import { Route, Routes } from 'react-router-dom'
 
 export default function AdminHomePage(){
 
