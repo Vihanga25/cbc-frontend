@@ -27,23 +27,17 @@ return(
     </div>
 
     <div className="bg-red-500 w-[80%] h-screen">
-        <Routes path="/*">
+    <Routes path="/*">
         <Route path="/dashboard" element ={<h1>Dashboard</h1>}/>
+        <Route path="/products" element ={<AdminProductPage/>}/>
+
         <Route path="/products" element ={<AdminProductPage/>}/>
         <Route path="/orders" element ={<h1>Orders</h1>}/>
         <Route path="/customers" element ={<h1>Customers</h1>}/>
-        <Route path="/*" element ={<h1>404 error</h1>}/>
+        <Route path="/*" element ={<h1>404 Not Found</h1>}/>
+
         </Routes>
     </div>
-
     </div>
-
-
-
-
 );
-
-
-
-
 }
