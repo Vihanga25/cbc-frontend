@@ -8,20 +8,20 @@ export default function LoginPage() {
 
   function login() {
     axios
-      .post("http://localhost:5000/api/users/login", {
+      .post(import.meta.env.VITE_BACKEND_URL+"/api/users/login", {
         email: email,
         password: password,
       })
       .then((res) => {
         if (res.data.user == null) {
           toast.error(res.data.message);
-          return;
+          return
         }
 
-        toast.success("Login success");
-        localStorage.setItem("token", res.data.token);
+        toast.success("Login success")
+        localStorage.setItem("token", res.data.token)
 
-        if (res.data.user.type === "admin") {
+        if (res.data.user.type == "admin") {
           window.location.href = "/admin";
         } else {
           window.location.href = "/";

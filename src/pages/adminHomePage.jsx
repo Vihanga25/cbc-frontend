@@ -4,6 +4,7 @@ import { MdProductionQuantityLimits } from "react-icons/md";
 import { AiOutlineProduct } from "react-icons/ai";
 import { IoPeopleSharp } from "react-icons/io5";
 import AdminProductPage from "./admin/adminProductPage";
+import AddProductForm from "./admin/addProductForm";
 import { Route, Routes } from 'react-router-dom';
 
 export default function AdminHomePage() {
@@ -28,7 +29,7 @@ export default function AdminHomePage() {
       <Routes path="/*">
           <Route path="/dashboard" element={<h1>Dashboard</h1>} />
           <Route path="/products" element={<AdminProductPage />} />
-          <Route path = "/products/addProduct" element = {<h1>Add Product</h1>}/>
+          <Route path="/products/addProduct" element={<AddProductForm/>} />
           <Route path="/orders" element={<h1>Orders</h1>} />
           <Route path="/customers" element={<h1>Customers</h1>} />
           <Route path="/*" element={<h1>404 Not Found</h1>} />
