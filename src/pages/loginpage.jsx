@@ -37,7 +37,7 @@ export default function LoginPage() {
       <div className="bg-secondary p-8 rounded-lg shadow-lg w-96">
         <div className="flex flex-col items-center">
           <img src="/images.png" alt="Logo" className="rounded-full w-20 mb-4" />
-          <h2 className="text-2xl font-bold text-primary">Welcome Back</h2>
+          <h2 className="text-2xl font-bold text-primary">Login </h2>
         </div>
 
         <div className="mt-6">
