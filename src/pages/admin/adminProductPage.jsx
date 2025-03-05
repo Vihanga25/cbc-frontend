@@ -4,6 +4,9 @@ import toast from "react-hot-toast";
 import { FaPlus, FaTrash } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
+
+
+
 export default function AdminProductsPage() {
   const [products, setProducts] = useState([]);
   const [productsLoaded, setProductsLoaded] = useState(false);
@@ -104,7 +107,7 @@ export default function AdminProductsPage() {
                           setProductsLoaded(false);
                         });
                   
-                      }}
+                      }} // delete product
                     >
                       <FaTrash />
                     </button>
@@ -113,7 +116,7 @@ export default function AdminProductsPage() {
                       title="Edit"
                       onClick={()=>{
                         navigate("/admin/products/editProduct" , {state : {product : product}});
-                      }}
+                      }} //edit product
                     >
                       <FaPencil />
                     </button>
