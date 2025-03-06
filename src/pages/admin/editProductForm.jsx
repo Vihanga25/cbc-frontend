@@ -7,14 +7,14 @@ import uploadMediaToSupabase from "../../utils/mediaUpload";
 export default function EditProductForm() {
   const location = useLocation()
   const navigate = useNavigate()
+
   const product = location.state.product
+
   const altNames = product.altNames.join(",")
 
   if(product == null){
     navigate("/admin/products")
   }
-
-
   const [productId, setProductId] = useState(product.productId);
   const [productName, setProductName] = useState(product.productName);
   const [alternativeNames, setAlternativeNames] = useState(altNames);
@@ -24,27 +24,26 @@ export default function EditProductForm() {
   const [stock, setStock] = useState(product.stock);
   const [description, setDescription] = useState(product.description);
   
-  
+
+
+  console.log(location)
 
   async function handleSubmit(){
+    
     const altNames = alternativeNames.split(",")
     
     const promisesArray = []
-
     let imgUrls = product.images
-
-    if (imageFiles.length > 0) {
+    if(imageFiles.length > 0){
 
       for(let i=0; i<imageFiles.length; i++){
         promisesArray[i] = uploadMediaToSupabase(imageFiles[i])
       }
-
-       imgUrls = await Promise.all(promisesArray)
       
+      imgUrls = await Promise.all(promisesArray)
     }
 
-
-    const productData = {
+    const productData= {
       productId : productId,
       productName : productName,
       altNames : altNames,
