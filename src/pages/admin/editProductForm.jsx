@@ -5,29 +5,46 @@ import { useLocation, useNavigate } from "react-router-dom";
 import uploadMediaToSupabase from "../../utils/mediaUpload";
 
 export default function EditProductForm() {
-  const [productId, setProductId] = useState("");
-  const [productName, setProductName] = useState("");
-  const [alternativeNames, setAlternativeNames] = useState("");
-  const [imageFiles, setImageFiles] = useState([]);
-  const [price, setPrice] = useState("");
-  const [lastPrice, setLastPrice] = useState("");
-  const [stock, setStock] = useState("");
-  const [description, setDescription] = useState("");
-  const navigate = useNavigate()
   const location = useLocation()
+  const navigate = useNavigate()
+  const product = location.state.product
+  const altNames = product.altNames.join(",")
+
+  if(product == null){
+    navigate("/admin/products")
+  }
+
+
+  const [productId, setProductId] = useState(product.productId);
+  const [productName, setProductName] = useState(product.productName);
+  const [alternativeNames, setAlternativeNames] = useState(altNames);
+  const [imageFiles, setImageFiles] = useState([]);
+  const [price, setPrice] = useState(product.price);
+  const [lastPrice, setLastPrice] = useState(product.lastPrice);
+  const [stock, setStock] = useState(product.stock);
+  const [description, setDescription] = useState(product.description);
+  
+  
 
   async function handleSubmit(){
     const altNames = alternativeNames.split(",")
     
     const promisesArray = []
 
-    for(let i=0; i<imageFiles.length; i++){
-      promisesArray[i] = uploadMediaToSupabase(imageFiles[i])
-    }
-    
-    const imgUrls = await Promise.all(promisesArray)
+    let imgUrls = product.images
 
-    const product = {
+    if (imageFiles.length > 0) {
+
+      for(let i=0; i<imageFiles.length; i++){
+        promisesArray[i] = uploadMediaToSupabase(imageFiles[i])
+      }
+
+       imgUrls = await Promise.all(promisesArray)
+      
+    }
+
+
+    const productData = {
       productId : productId,
       productName : productName,
       altNames : altNames,
@@ -40,15 +57,15 @@ export default function EditProductForm() {
 
     const token = localStorage.getItem("token")
     try{
-      await axios.post(import.meta.env.VITE_BACKEND_URL+"/api/products",product,{
+      await axios.put(import.meta.env.VITE_BACKEND_URL+"/api/products/"+product.productId,productData,{
         headers : {
           Authorization : "Bearer "+token
         }
       })
       navigate("/admin/products")
-      toast.success("Product added successfully")
+      toast.success("Product updated successfully")
     }catch(err){
-      toast.error("Failed to add product")
+      toast.error("Failed to update product")
     }
 
     
@@ -64,6 +81,7 @@ export default function EditProductForm() {
           <div className="flex flex-col">
             <label className="text-gray-700 font-medium">Product ID</label>
             <input
+              disabled
               type="text"
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none"
               placeholder="Enter Product ID"
@@ -156,7 +174,7 @@ export default function EditProductForm() {
             
             onClick={handleSubmit}
           >
-            Add Product
+            Update Product
           </button>
         </div>
       </div>
