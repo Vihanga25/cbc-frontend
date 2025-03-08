@@ -1,5 +1,4 @@
 import { createClient } from "@supabase/supabase-js";
-import { supabase } from "../supabaseClient";
 
 
 const key = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR2cXZwZXRhYWlqa2JhbXVqbWt0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDEzNDE3MjYsImV4cCI6MjA1NjkxNzcyNn0.3ReRZUOsD5xppKaFIi_OYjmlRSQchvUsUn4ruMp3mOc`;
