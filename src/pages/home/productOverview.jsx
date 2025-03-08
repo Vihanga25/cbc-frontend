@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ProductNotFound from "./productNotFound";
-import ImageSlider from "../../components/imgeSlider";
+import ImageSlider from "../../component/imageSlider";
 import { addToCart } from "../../utils/cartFunction";
 import toast from "react-hot-toast";
 
@@ -10,7 +10,7 @@ export default function ProductOverview() {
   const params = useParams();
   const productId = params.id;
   const [product, setProduct] = useState(null);
-  const [status, setStatus] = useState("loading"); //not-foud, found
+  const [status, setStatus] = useState("loading"); 
   const navigate = useNavigate();
   useEffect(() => {
     console.log(productId);
@@ -19,7 +19,7 @@ export default function ProductOverview() {
       .then((res) => {
         console.log(res.data);
 
-        //if null
+     
         if (res.data == null) {
           setStatus("not-found");
         }

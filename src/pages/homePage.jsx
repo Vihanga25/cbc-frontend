@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
-import Header from '../components/header';
 import LoginPage from './loginpage';
 import ProductOverview from './home/productOverview';
 import ProductPage from './home/product';
 import Cart from './home/cart';
+import Header from '../component/header';
 
 
 export default function HomePage() {
