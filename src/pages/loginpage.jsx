@@ -64,7 +64,7 @@ export default function LoginPage() {
 
         <button
           onClick={login}
-          className="w-full bg-accent bg-[#8B5E3B] text-white mt-6 py-2 rounded-lg hover:bg-opacity-80 transition duration-300"
+          className="w-full bg-accent text-white mt-6 py-2 rounded-lg hover:bg-opacity-80 transition duration-300"
         >
           Login
         </button>

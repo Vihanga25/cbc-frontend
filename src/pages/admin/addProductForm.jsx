@@ -47,6 +47,7 @@ export default function AddProductForm() {
       navigate("/admin/products")
       toast.success("Product added successfully")
     }catch(err){
+      //console.log(err)
       toast.error("Failed to add product")
     }
 
