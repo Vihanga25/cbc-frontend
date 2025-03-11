@@ -69,6 +69,10 @@ export default function LoginPage() {
           Login
         </button>
 
+        <button className="bg-slate-50"> Login with Google
+
+        </button>
+
         <p className="text-center text-primary mt-4">
           Don't have an account? <a href="/register" className="text-accent">Sign Up</a>
         </p>
