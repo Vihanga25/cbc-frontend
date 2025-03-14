@@ -4,9 +4,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/loginpage';
 import HomePage from './pages/homePage';
 import AdminHomePage from './pages/adminHomePage';
-
 import { Toaster } from 'react-hot-toast';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import ShippingPage from './pages/home/shipping';
+import Footer from './component/footer';
 
 function App() {
 
@@ -24,9 +25,11 @@ function App() {
           <Route path="/*" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/admin/*" element={<AdminHomePage />} />
+          <Route path ="/shipping" element={<ShippingPage/>}/>
         
         </Routes>
         </GoogleOAuthProvider>
+        <Footer/>
       </BrowserRouter>
     </div>
   );

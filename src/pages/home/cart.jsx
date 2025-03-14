@@ -9,6 +9,8 @@ export default function Cart() {
   const [total, setTotal] = useState(0);
   const [labeledTotal, setLabeledTotal] = useState(0);
   const navigate = useNavigate();
+  
+  
   useEffect(() => {
     setCart(loadCart());
     console.log(loadCart());
@@ -19,6 +21,7 @@ export default function Cart() {
       .then((res) => {
         console.log(loadCart());
         console.log(res.data);
+        
         if(res.data.total != null){
           setTotal(res.data.total);
           setLabeledTotal(res.data.total);
