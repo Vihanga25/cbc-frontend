@@ -10,9 +10,9 @@ export default function ProductOverview() {
   const params = useParams();
   const productId = params.id;
   const [product, setProduct] = useState(null);
-  const [status, setStatus] = useState("loading"); 
+  const [status, setStatus] = useState("loading");
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     console.log(productId);
     axios
@@ -20,7 +20,6 @@ export default function ProductOverview() {
       .then((res) => {
         console.log(res.data);
 
-     
         if (res.data == null) {
           setStatus("not-found");
         }
@@ -37,75 +36,77 @@ export default function ProductOverview() {
     toast.success(product.productId + " Added to cart");
   }
 
-  function onBuyNowClick(){
-    navigate("/shipping",{
-      state:{
+  function onBuyNowClick() {
+    navigate("/shipping", {
+      state: {
         items: [
           {
             productId: product.productId,
-            qty: 1
-          }
-        ]
-      }
-    })
+            qty: 1,
+          },
+        ],
+      },
+    });
   }
 
   return (
-    <div className="w-full h-[calc(100vh-100px)] ">
+    <div className="w-full h-[calc(100vh-100px)] bg-gray-50">
       {status == "loading" && (
         <div className="w-full h-full flex items-center justify-center">
-          <div className="animate-spin rounded-full h-32 w-32  border-2 border-gray-500 border-b-accent border-b-4"></div>
+          <div className="animate-spin rounded-full h-32 w-32 border-4 border-gray-300 border-t-accent"></div>
         </div>
       )}
       {status == "not-found" && <ProductNotFound />}
       {status == "found" && (
-        <div
-          className="w-full h-full flex flex-col lg:flex-row  items-center justify-center "
-        >
-          <h1 className="text-3xl font-bold text-gray-800 lg:hidden">
-            {product.productName}
-          </h1>
-          <p className="text-xl text-gray-600 lg:hidden">
-            {product.price > product.lastPrice && (
-              <span className="line-through text-red-500">
-                LKR.{product.price}
-              </span>
-            )}{" "}
-            <span>{"LKR." + product.lastPrice}</span>
-          </p>
-          <div className="w-[100%]  border-[3px] border-blue-900 lg:w-[35%] lg:h-full">
-            <ImageSlider images={product.images} />
-          </div>
-          <div className="w-[65%] h-full p-4">
-            <h1 className="text-3xl font-bold text-gray-800 hidden lg:block">
+        <div className="w-full h-full flex flex-col lg:flex-row items-center justify-center space-y-8 lg:space-y-0 lg:space-x-8 p-4">
+          <div className="w-full lg:w-1/3 bg-white shadow-lg rounded-lg p-4">
+            <h1 className="text-3xl font-semibold text-gray-800 text-center lg:hidden">
               {product.productName}
             </h1>
-            <h1 className="text-3xl font-bold text-gray-500">
-              {product.altName.join(" | ")}
-            </h1>
-            <p className="text-xl text-gray-600 hidden lg:block">
+            <p className="text-xl text-gray-600 text-center lg:hidden">
               {product.price > product.lastPrice && (
                 <span className="line-through text-red-500">
                   LKR.{product.price}
                 </span>
-              )}{" "}
-              <span>{"LKR." + product.lastPrice}</span>
+              )}
+              <span className="block text-lg text-gray-800">LKR.{product.lastPrice}</span>
             </p>
-            <p className="text-lg text-gray-600 line-clamp-3">
-              {product.description}
+            <div className="w-full border-2 border-blue-900 rounded-lg overflow-hidden">
+              <ImageSlider images={product.images} />
+            </div>
+          </div>
+          <div className="w-full lg:w-2/3 bg-white shadow-lg rounded-lg p-6">
+            <h1 className="text-3xl font-semibold text-gray-800 hidden lg:block">
+              {product.productName}
+            </h1>
+            <h1 className="text-xl font-medium text-gray-500 mb-4">
+              {product.altName.join(" | ")}
+            </h1>
+            <p className="text-xl text-gray-600">
+              {product.price > product.lastPrice && (
+                <span className="line-through text-red-500">
+                  LKR.{product.price}
+                </span>
+              )}
+              <span className="text-xl font-semibold text-gray-900">
+                LKR.{product.lastPrice}
+              </span>
             </p>
-            <button
-              onClick={onAddtoCartClick}
-              className="bg-accent text-white p-2 rounded-lg"
-            >
-              Add to cart
-            </button>
-            <button
-              onClick={onBuyNowClick}
-              className=" text-accent border mx-1 border-accent p-2 rounded-lg"
-            >
-              Buy Now
-            </button>
+            <p className="text-lg text-gray-600 line-clamp-3 mt-4">{product.description}</p>
+            <div className="mt-6 flex space-x-4">
+              <button
+                onClick={onAddtoCartClick}
+                className="bg-accent text-white py-2 px-4 rounded-lg shadow-md hover:bg-accent-dark transition-all"
+              >
+                Add to Cart
+              </button>
+              <button
+                onClick={onBuyNowClick}
+                className="text-accent border-2 border-accent py-2 px-4 rounded-lg shadow-md hover:bg-accent-light hover:text-white transition-all"
+              >
+                Buy Now
+              </button>
+            </div>
           </div>
         </div>
       )}
