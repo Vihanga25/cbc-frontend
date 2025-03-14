@@ -81,7 +81,7 @@ export default function ProductOverview() {
               {product.productName}
             </h1>
             <h1 className="text-3xl font-bold text-gray-500">
-              {product.altNames.join(" | ")}
+              {product.altName.join(" | ")}
             </h1>
             <p className="text-xl text-gray-600 hidden lg:block">
               {product.price > product.lastPrice && (
